@@ -54,6 +54,14 @@ export default function ExpenseForm() {
         setError('')
         // Agregar un nuevo gasto
         dispatch({type: 'add-expense', payload: {expense}})
+
+        // Reiniciar el state
+        setExpense({
+            amount: 0,
+            expenseName: '',
+            category: '',
+            date: new Date()
+        })
     }
 
 
@@ -77,6 +85,7 @@ export default function ExpenseForm() {
                 className="bg-slate-100 p-2"
                 name="expenseName"
                 onChange={handleChange}
+                value={expense.expenseName}
             />
         </div>
         
@@ -92,6 +101,7 @@ export default function ExpenseForm() {
                 className="bg-slate-100 p-2"
                 name="amount"
                 onChange={handleChange}
+                value={expense.amount}
             />
         </div>
 
@@ -105,6 +115,7 @@ export default function ExpenseForm() {
                 className="bg-slate-100 p-2"
                 name="category"
                 onChange={handleChange}
+                value={expense.category}
             >
                 <option value="">-- Seleccione --</option>
                 {categories.map( category => (
